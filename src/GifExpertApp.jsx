@@ -7,13 +7,14 @@ export const GifExpertApp = ()=>{
 
     //Como regla no poner los hooks dentro de condicionales
     //El useState siempre se inicializa con un arreglo
-    const [categories,setCategories] = useState(['One Punch','Dragon Ball']);
+    const [categories,setCagetory] = useState(['One Punch','Dragon Ball']);
 
     console.log(categories);
 
-    const onAddCategory = () => {
-        //setCategories( [...categories,'Valorant'] );
-        setCategories(cat=>[...cat , 'Valorant' ]); //Segunda opcion
+    const onAddCategory = (newCategory) => {
+        console.log(newCategory);
+        setCagetory( [...categories , newCategory] );
+        //onNewCategory(cat=>[...cat , 'Valorant' ]); //Segunda opcion
     }
 
 
@@ -24,10 +25,13 @@ export const GifExpertApp = ()=>{
             <h1>GifExpertApp</h1>
 
             {/* input */}
-            <AddCategory/>
+            <AddCategory 
+                onNewCategory = { (event) => onAddCategory(event) }
+                // setCategories = { setCategories } {/* aqui en el prop mandamos la referencia de la funcion que modifica el estado de categories */}
+            /> 
 
 
-            <button onClick={onAddCategory}>Agregar</button>
+            {/* <button onClick={onAddCategory}>Agregar</button> */}
 
             {/* listado de gifs */}
             <ol>
